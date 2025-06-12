@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spice Palace - Authentic Indian Restaurant</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-animation">
+            <div class="spice-icon">🌶️</div>
+            <div class="loading-text">Spice Palace</div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">🍛</div>
+                <div class="logo-text">
+                    <h2>Spice Palace</h2>
+                    <span>Authentic Indian Cuisine</span>
+                </div>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#menu" class="nav-link">Menu</a></li>
+                <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li class="cart-container">
+                    <button class="cart-btn" onclick="toggleCart()">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                        <span class="cart-total">₹<span id="cartTotalNav">0</span></span>
+                    </button>
+                </li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="hero-video-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="title-line">Authentic</span>
+                    <span class="title-line highlight">Indian Flavors</span>
+                    <span class="title-line">Await You</span>
+                </h1>
+                <p class="hero-subtitle">Experience the rich heritage of Indian cuisine with our traditional recipes passed down through generations, crafted with love and the finest spices.</p>
+                <div class="hero-buttons">
+                    <a href="#menu" class="btn btn-primary">
+                        <span>Explore Menu</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <span>Order Online</span>
+                        <i class="fas fa-phone"></i>
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">25+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">20+</div>
+                        <div class="stat-label">Signature Dishes</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">5⭐</div>
+                        <div class="stat-label">Customer Rating</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-spices">
+                    <div class="spice-particle">🌶️</div>
+                    <div class="spice-particle">🧄</div>
+                    <div class="spice-particle">🧅</div>
+                    <div class="spice-particle">🍃</div>
+                    <div class="spice-particle">⭐</div>
+                </div>
+                <div class="hero-image-container">
+                    <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=800&h=600&fit=crop" alt="Delicious Indian Food" class="hero-image">
+                    <div class="image-glow"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Our Story</span>
+                <h2 class="section-title">Where Tradition Meets Taste</h2>
+                <p class="section-subtitle">Discover the authentic flavors of India, crafted with passion and served with love</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <div class="about-story">
+                        <p>Welcome to Spice Palace, where tradition meets taste. For over 25 years, we've been serving authentic Indian cuisine that celebrates the diverse flavors from across the Indian subcontinent.</p>
+                        <p>Our master chefs bring generations of culinary expertise, using traditional cooking methods and the finest spices imported directly from India to create dishes that transport you straight to the heart of India.</p>
+                    </div>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🌿</div>
+                            <h4>Fresh Ingredients</h4>
+                            <p>Daily sourced organic vegetables and premium spices</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔥</div>
+                            <h4>Traditional Methods</h4>
+                            <p>Authentic cooking techniques passed down generations</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">❤️</div>
+                            <h4>Made with Love</h4>
+                            <p>Every dish prepared with passion and care</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🏆</div>
+                            <h4>Award Winning</h4>
+                            <p>Recognized for excellence in Indian cuisine</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-images">
+                    <div class="image-stack">
+                        <img src="https://images.unsplash.com/photo-1548943487-a2e4e43b4853?w=400&h=500&fit=crop" alt="Restaurant Interior" class="about-img-1">
+                        <img src="https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=350&h=450&fit=crop" alt="Chef Cooking" class="about-img-2">
+                        <div class="experience-badge">
+                            <div class="badge-number">25+</div>
+                            <div class="badge-text">Years of Excellence</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Our Menu</span>
+                <h2 class="section-title">Signature Dishes</h2>
+                <p class="section-subtitle">Explore our carefully curated collection of authentic Indian delicacies</p>
+            </div>
+            
+            <!-- Menu Categories -->
+            <div class="menu-categories">
+                <button class="category-btn active" onclick="filterMenu('all')" data-category="all">
+                    <span class="category-icon">🍽️</span>
+                    <span>All Items</span>
+                </button>
+                <button class="category-btn" onclick="filterMenu('north')" data-category="north">
+                    <span class="category-icon">🫕</span>
+                    <span>North Indian</span>
+                </button>
+                <button class="category-btn" onclick="filterMenu('south')" data-category="south">
+                    <span class="category-icon">🥥</span>
+                    <span>South Indian</span>
+                </button>
+                <button class="category-btn" onclick="filterMenu('appetizers')" data-category="appetizers">
+                    <span class="category-icon">🥟</span>
+                    <span>Appetizers</span>
+                </button>
+                <button class="category-btn" onclick="filterMenu('desserts')" data-category="desserts">
+                    <span class="category-icon">🍯</span>
+                    <span>Desserts</span>
+                </button>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="menu-search">
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="menuSearch" placeholder="Search for your favorite dish..." onkeyup="searchMenu()">
+                    <button class="search-clear" onclick="clearSearch()">×</button>
+                </div>
+            </div>
+
+            <!-- Menu Items Grid -->
+            <div class="menu-grid" id="menuGrid">
+                <!-- Menu items will be populated by JavaScript -->
+            </div>
+
+            <!-- Load More Button -->
+            <div class="load-more-container">
+                <button class="btn btn-outline load-more-btn" onclick="loadMoreItems()">
+                    <span>Load More Dishes</span>
+                    <i class="fas fa-plus"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Gallery</span>
+                <h2 class="section-title">Visual Feast</h2>
+                <p class="section-subtitle">A glimpse into our culinary artistry and vibrant atmosphere</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&h=400&fit=crop" alt="Indian Curry">
+                    <div class="gallery-overlay">
+                        <h4>Signature Curries</h4>
+                        <p>Rich and aromatic</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=400&h=400&fit=crop" alt="Tandoor Items">
+                    <div class="gallery-overlay">
+                        <h4>Tandoor Specialties</h4>
+                        <p>Grilled to perfection</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=400&h=400&fit=crop" alt="South Indian">
+                    <div class="gallery-overlay">
+                        <h4>South Indian Delights</h4>
+                        <p>Traditional favorites</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=400&h=400&fit=crop" alt="Desserts">
+                    <div class="gallery-overlay">
+                        <h4>Sweet Endings</h4>
+                        <p>Divine desserts</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1548943487-a2e4e43b4853?w=400&h=400&fit=crop" alt="Restaurant Ambiance">
+                    <div class="gallery-overlay">
+                        <h4>Elegant Ambiance</h4>
+                        <p>Perfect dining atmosphere</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&h=400&fit=crop" alt="Appetizers">
+                    <div class="gallery-overlay">
+                        <h4>Crispy Appetizers</h4>
+                        <p>Perfect starters</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopping Cart -->
+    <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3><i class="fas fa-shopping-cart"></i> Your Order</h3>
+            <button class="close-cart" onclick="closeCart()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart">
+                <div class="empty-cart-icon">🛒</div>
+                <h4>Your cart is empty</h4>
+                <p>Add some delicious items to get started!</p>
+            </div>
+        </div>
+        <div class="cart-summary" id="cartSummary" style="display: none;">
+            <div class="summary-row">
+                <span>Subtotal:</span>
+                <span>₹<span id="cartSubtotal">0</span></span>
+            </div>
+            <div class="summary-row">
+                <span>Delivery:</span>
+                <span>₹50</span>
+            </div>
+            <div class="summary-row">
+                <span>Tax (5%):</span>
+                <span>₹<span id="cartTax">0</span></span>
+            </div>
+            <div class="summary-row total-row">
+                <span>Total:</span>
+                <span>₹<span id="cartFinalTotal">0</span></span>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <strong>Total: ₹<span id="cartTotal">0</span></strong>
+            </div>
+            <button class="checkout-btn" onclick="checkout()" id="checkoutBtn" disabled>
+                <span>Proceed to Checkout</span>
+                <i class="fas fa-arrow-right"></i>
+            </button>
+            <button class="clear-cart-btn" onclick="clearCart()">
+                <i class="fas fa-trash"></i>
+                <span>Clear Cart</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Contact Us</span>
+                <h2 class="section-title">Visit Us Today</h2>
+                <p class="section-subtitle">Experience authentic Indian dining in a warm and welcoming atmosphere</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="info-cards">
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="info-content">
+                                <h4>Location</h4>
+                                <p>123 Spice Street<br>Delhi, India 110001</p>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="info-content">
+                                <h4>Phone</h4>
+                                <p>+91 98765 43210<br>+91 98765 43211</p>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="info-content">
+                                <h4>Hours</h4>
+                                <p>Mon-Sun: 11:00 AM - 11:00 PM<br>Kitchen closes at 10:30 PM</p>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="info-content">
+                                <h4>Email</h4>
+                                <p>info@spicepalace.com<br>orders@spicepalace.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="reservation-form">
+                    <div class="form-container">
+                        <h3>Make a Reservation</h3>
+                        <form id="reservationForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <input type="text" id="customerName" placeholder=" " required>
+                                    <label for="customerName">Your Name</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" id="customerEmail" placeholder=" " required>
+                                    <label for="customerEmail">Email Address</label>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <input type="tel" id="customerPhone" placeholder=" " required>
+                                    <label for="customerPhone">Phone Number</label>
+                                </div>
+                                <div class="form-group">
+                                    <select id="guestCount" required>
+                                        <option value="">Number of Guests</option>
+                                        <option value="1">1 Person</option>
+                                        <option value="2">2 People</option>
+                                        <option value="3">3 People</option>
+                                        <option value="4">4 People</option>
+                                        <option value="5">5 People</option>
+                                        <option value="6+">6+ People</option>
+                                    </select>
+                                    <label for="guestCount">Party Size</label>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <input type="date" id="reservationDate" required>
+                                    <label for="reservationDate">Preferred Date</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="time" id="reservationTime" required>
+                                    <label for="reservationTime">Preferred Time</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="specialRequests" placeholder=" "></textarea>
+                                <label for="specialRequests">Special Requests</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary submit-btn">
+                                <span>Book Table</span>
+                                <i class="fas fa-calendar-check"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <div class="logo-icon">🍛</div>
+                        <h3>Spice Palace</h3>
+                    </div>
+                    <p>Authentic Indian cuisine that brings the flavors of India to your table. Experience tradition, taste the heritage.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link youtube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#menu">Our Menu</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#" onclick="showPrivacyPolicy()">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>123 Spice Street, Delhi, India</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+91 98765 43210</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@spicepalace.com</span>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Opening Hours</h4>
+                    <div class="hours-item">
+                        <span class="day">Monday - Friday</span>
+                        <span class="time">11:00 AM - 11:00 PM</span>
+                    </div>
+                    <div class="hours-item">
+                        <span class="day">Saturday - Sunday</span>
+                        <span class="time">10:00 AM - 12:00 AM</span>
+                    </div>
+                    <div class="hours-note">Kitchen closes 30 minutes before closing time</div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2025 Spice Palace. All rights reserved.</p>
+                    <p>Crafted with ❤️ for authentic Indian cuisine lovers</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification System -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <!-- Modal for Item Details -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
+        <div class="modal-content" id="modalContent" onclick="event.stopPropagation()">
+            <!-- Modal content will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
