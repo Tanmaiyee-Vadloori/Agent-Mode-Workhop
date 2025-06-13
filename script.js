@@ -888,4 +888,129 @@ function simulateOrderTracking(orderId) {
             if (index < stages.length - 1) {
                 showNotification(`Order #${orderId}: ${stage.status}`, 'info');
             } else {
-                showNotification(`Order #${orderId}: ${stage.status!
+                showNotification(`Order #${orderId}: ${stage.status}`, 'success');
+            }
+        }, stage.time);
+    });
+}
+
+function saveCartToStorage() {
+    localStorage.setItem('spicePalaceCart', JSON.stringify(cart));
+}
+
+function loadCartFromStorage() {
+    const storedCart = localStorage.getItem('spicePalaceCart');
+    if (storedCart) {
+        cart = JSON.parse(storedCart);
+        updateCartDisplay();
+    }
+}
+
+function saveOrderToStorage(order) {
+    let orders = JSON.parse(localStorage.getItem('spicePalaceOrders') || '[]');
+    orders.push(order);
+    localStorage.setItem('spicePalaceOrders', JSON.stringify(orders));
+}
+
+// Notification System
+function showNotification(message, type = 'info') {
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.textContent = message;
+    notificationContainer.appendChild(notification);
+    setTimeout(() => {
+        notification.classList.add('fade-out');
+        setTimeout(() => {
+            notification.remove();
+        }, 500);
+    }, 3000);
+}
+
+// Navigation and UI
+function setupEventListeners() {
+    // Navigation scroll
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                window.scrollTo({
+                    top: target.offsetTop - 70,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+    // Hamburger menu
+    if (hamburger) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+    }
+    // Search
+    if (searchInput) {
+        searchInput.addEventListener('keyup', searchMenu);
+    }
+    if (searchClear) {
+        searchClear.addEventListener('click', clearSearch);
+    }
+}
+
+function initializeNavigation() {
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+}
+
+function setupLazyLoading() {
+    const images = document.querySelectorAll('img[loading="lazy"]');
+    images.forEach(img => {
+        img.onload = () => {
+            img.classList.add('loaded');
+        };
+    });
+}
+
+function setupScrollAnimations() {
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+            }
+        });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+}
+
+// Reservation Form Validation
+function setupFormValidation() {
+    const form = document.getElementById('reservationForm');
+    if (!form) return;
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Simple validation
+        const name = document.getElementById('customerName').value.trim();
+        const email = document.getElementById('customerEmail').value.trim();
+        const phone = document.getElementById('customerPhone').value.trim();
+        const guests = document.getElementById('guestCount').value;
+        const date = document.getElementById('reservationDate').value;
+        const time = document.getElementById('reservationTime').value;
+        if (!name || !email || !phone || !guests || !date || !time) {
+            showNotification('Please fill in all required fields.', 'error');
+            return;
+        }
+        // Simulate reservation
+        showNotification('Reservation submitted! We look forward to serving you.', 'success');
+        form.reset();
+    });
+}
+
+// Privacy Policy Modal (Optional)
+function showPrivacyPolicy() {
+    alert('Privacy Policy: Your data is safe with us. We do not share your information.');
+}
