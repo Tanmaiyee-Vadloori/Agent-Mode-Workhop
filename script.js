@@ -216,10 +216,25 @@ const menuItems = [
         isVeg: false,
         popular: false
     },
+    {
+        id: 15,
+        name: "Upma",
+        description: "Classic South Indian breakfast dish made from semolina, sautéed with vegetables, mustard seeds, curry leaves, and spices. Served hot and garnished with fresh coriander and a squeeze of lemon.",
+        price: 90,
+        image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=300&fit=crop",
+        category: "south",
+        cuisine: "South Indian",
+        spiceLevel: "Mild",
+        rating: 4.5,
+        preparationTime: "15 mins",
+        ingredients: ["Semolina", "Vegetables", "Mustard Seeds", "Curry Leaves", "Spices", "Coriander", "Lemon"],
+        isVeg: true,
+        popular: false
+    },
 
     // Appetizers
     {
-        id: 15,
+        id: 16,
         name: "Vegetable Samosa",
         description: "Crispy golden pastry triangles filled with spiced potatoes, peas, and aromatic herbs",
         price: 60,
@@ -234,7 +249,7 @@ const menuItems = [
         popular: true
     },
     {
-        id: 16,
+        id: 17,
         name: "Mixed Pakoras",
         description: "Assorted vegetable fritters in seasoned chickpea batter, served hot with mint chutney",
         price: 85,
@@ -249,7 +264,7 @@ const menuItems = [
         popular: false
     },
     {
-        id: 17,
+        id: 18,
         name: "Chicken Tikka Starter",
         description: "Succulent chicken pieces marinated in yogurt and spices, grilled in tandoor and served sizzling",
         price: 290,
@@ -264,7 +279,7 @@ const menuItems = [
         popular: true
     },
     {
-        id: 18,
+        id: 19,
         name: "Masala Papadum",
         description: "Crispy lentil wafers topped with onions, tomatoes, and spices, served with mint chutney",
         price: 45,
@@ -281,7 +296,7 @@ const menuItems = [
 
     // Desserts
     {
-        id: 19,
+        id: 20,
         name: "Gulab Jamun",
         description: "Soft, spongy milk dumplings soaked in aromatic sugar syrup flavored with cardamom and rose water",
         price: 85,
@@ -296,7 +311,7 @@ const menuItems = [
         popular: true
     },
     {
-        id: 20,
+        id: 21,
         name: "Kulfi Falooda",
         description: "Traditional Indian ice cream with pistachios and cardamom, served with vermicelli and rose syrup",
         price: 95,
@@ -873,347 +888,4 @@ function simulateOrderTracking(orderId) {
             if (index < stages.length - 1) {
                 showNotification(`Order #${orderId}: ${stage.status}`, 'info');
             } else {
-                showNotification(`Order #${orderId}: ${stage.status}! 🎉\nThank you for dining with Spice Palace!`, 'success');
-            }
-        }, stage.time);
-    });
-}
-
-// Storage Functions
-function saveCartToStorage() {
-    localStorage.setItem('spicePalaceCart', JSON.stringify(cart));
-}
-
-function loadCartFromStorage() {
-    const savedCart = localStorage.getItem('spicePalaceCart');
-    if (savedCart) {
-        cart = JSON.parse(savedCart);
-        updateCartDisplay();
-    }
-}
-
-function saveOrderToStorage(order) {
-    let orders = JSON.parse(localStorage.getItem('spicePalaceOrders') || '[]');
-    orders.unshift(order);
-    // Keep only last 10 orders
-    orders = orders.slice(0, 10);
-    localStorage.setItem('spicePalaceOrders', JSON.stringify(orders));
-}
-
-// Notification System
-function showNotification(message, type = 'info') {
-    const notification = document.createElement('div');
-    notification.className = `notification ${type}`;
-    
-    // Handle multi-line messages
-    const lines = message.split('\n');
-    notification.innerHTML = lines.map(line => `<div>${line}</div>`).join('');
-    
-    notificationContainer.appendChild(notification);
-    
-    // Auto remove after 5 seconds
-    setTimeout(() => {
-        notification.style.transform = 'translateX(100%)';
-        notification.style.opacity = '0';
-        setTimeout(() => {
-            if (notification.parentNode) {
-                notificationContainer.removeChild(notification);
-            }
-        }, 300);
-    }, 5000);
-    
-    // Click to dismiss
-    notification.addEventListener('click', () => {
-        notification.style.transform = 'translateX(100%)';
-        notification.style.opacity = '0';
-        setTimeout(() => {
-            if (notification.parentNode) {
-                notificationContainer.removeChild(notification);
-            }
-        }, 300);
-    });
-}
-
-// Navigation Functions
-function initializeNavigation() {
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-                
-                // Close mobile menu if open
-                navMenu.classList.remove('active');
-                hamburger.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-        });
-    });
-    
-    // Active navigation link highlighting
-    const navLinks = document.querySelectorAll('.nav-link');
-    const sections = document.querySelectorAll('section[id]');
-    
-    window.addEventListener('scroll', () => {
-        let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (window.scrollY >= sectionTop - 100) {
-                current = section.getAttribute('id');
-            }
-        });
-        
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${current}`) {
-                link.classList.add('active');
-            }
-        });
-    });
-}
-
-// Event Listeners Setup
-function setupEventListeners() {
-    // Mobile menu toggle
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
-        
-        // Prevent body scroll when menu is open
-        document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : 'auto';
-    });
-    
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
-            navMenu.classList.remove('active');
-            hamburger.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-    });
-    
-    // Search input events
-    if (searchInput) {
-        searchInput.addEventListener('input', searchMenu);
-        searchInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                searchMenu();
-            }
-        });
-    }
-    
-    // Close cart when clicking overlay
-    cartOverlay.addEventListener('click', closeCart);
-    
-    // Prevent cart from closing when clicking inside
-    cartSidebar.addEventListener('click', (e) => {
-        e.stopPropagation();
-    });
-    
-    // Close modal when clicking overlay
-    modalOverlay.addEventListener('click', (e) => {
-        if (e.target === modalOverlay) {
-            closeModal();
-        }
-    });
-    
-    // Navbar scroll effect
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 100) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    });
-    
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-        // Escape key closes modals and cart
-        if (e.key === 'Escape') {
-            closeModal();
-            closeCart();
-            navMenu.classList.remove('active');
-            hamburger.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-    });
-}
-
-// Form Validation
-function setupFormValidation() {
-    const reservationForm = document.getElementById('reservationForm');
-    
-    if (reservationForm) {
-        reservationForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = {
-                name: document.getElementById('customerName').value,
-                email: document.getElementById('customerEmail').value,
-                phone: document.getElementById('customerPhone').value,
-                guests: document.getElementById('guestCount').value,
-                date: document.getElementById('reservationDate').value,
-                time: document.getElementById('reservationTime').value,
-                requests: document.getElementById('specialRequests').value
-            };
-            
-            // Basic validation
-            if (!formData.name || !formData.email || !formData.phone || !formData.guests || !formData.date || !formData.time) {
-                showNotification('Please fill in all required fields', 'error');
-                return;
-            }
-            
-            // Email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(formData.email)) {
-                showNotification('Please enter a valid email address', 'error');
-                return;
-            }
-            
-            // Date validation (no past dates)
-            const selectedDate = new Date(formData.date);
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
-            
-            if (selectedDate < today) {
-                showNotification('Please select a future date', 'error');
-                return;
-            }
-            
-            // Simulate reservation processing
-            const submitBtn = this.querySelector('.submit-btn');
-            const originalText = submitBtn.innerHTML;
-            
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-            submitBtn.disabled = true;
-            
-            setTimeout(() => {
-                // Save reservation
-                const reservation = {
-                    ...formData,
-                    id: Date.now(),
-                    timestamp: new Date().toISOString(),
-                    status: 'confirmed'
-                };
-                
-                let reservations = JSON.parse(localStorage.getItem('spicePalaceReservations') || '[]');
-                reservations.unshift(reservation);
-                localStorage.setItem('spicePalaceReservations', JSON.stringify(reservations));
-                
-                // Reset form
-                this.reset();
-                
-                // Show success message
-                showNotification(
-                    `Table reserved successfully! 🎉\nDate: ${formData.date}\nTime: ${formData.time}\nGuests: ${formData.guests}`, 
-                    'success'
-                );
-                
-                // Reset button
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-                
-            }, 2000);
-        });
-        
-        // Set minimum date to today
-        const dateInput = document.getElementById('reservationDate');
-        if (dateInput) {
-            const today = new Date().toISOString().split('T')[0];
-            dateInput.setAttribute('min', today);
-        }
-    }
-}
-
-// Scroll Animations
-function setupScrollAnimations() {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-    
-    // Observe elements for scroll animations
-    document.querySelectorAll('.feature-card, .info-card, .gallery-item').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'all 0.6s ease';
-        observer.observe(el);
-    });
-}
-
-// Lazy Loading for Images
-function setupLazyLoading() {
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src || img.src;
-                img.classList.remove('lazy');
-                observer.unobserve(img);
-            }
-        });
-    });
-    
-    document.querySelectorAll('img[loading="lazy"]').forEach(img => {
-        imageObserver.observe(img);
-    });
-}
-
-// Utility Functions
-function formatPrice(price) {
-    return new Intl.NumberFormat('en-IN', {
-        style: 'currency',
-        currency: 'INR',
-        minimumFractionDigits: 0
-    }).format(price);
-}
-
-function formatDate(dateString) {
-    return new Date(dateString).toLocaleDateString('en-IN', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-    });
-}
-
-// Privacy Policy Modal (placeholder)
-function showPrivacyPolicy() {
-    showNotification('Privacy Policy: We respect your privacy and protect your personal information. Contact us for more details.', 'info');
-}
-
-// Export functions for debugging (development only)
-if (typeof window !== 'undefined') {
-    window.restaurantApp = {
-        cart,
-        menuItems,
-        addToCart,
-        removeFromCart,
-        clearCart,
-        filterMenu,
-        searchMenu,
-        showNotification,
-        getOrders: () => JSON.parse(localStorage.getItem('spicePalaceOrders') || '[]'),
-        getReservations: () => JSON.parse(localStorage.getItem('spicePalaceReservations') || '[]')
-    };
-}
-
-console.log('🍛 Spice Palace Restaurant loaded successfully!');
-console.log('Available functions:', Object.keys(window.restaurantApp || {}));
+                showNotification(`Order #${orderId}: ${stage.status!
